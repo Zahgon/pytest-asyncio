@@ -431,7 +431,7 @@ def pytest_pycollect_makeitem_convert_async_functions_to_subclass(
     Converts coroutines and async generators collected as pytest.Functions
     to AsyncFunction items.
     """
-    pass
+    yield
 
 
 @pytest.hookimpl(tryfirst=True)
@@ -474,7 +474,7 @@ def _set_event_loop(loop: AbstractEventLoop | None) -> None:
 @pytest.hookimpl(tryfirst=True, hookwrapper=True)
 def pytest_pyfunc_call(pyfuncitem: Function) -> object | None:
     """Pytest hook called before a test case is run."""
-    pass
+    yield
 
 
 def _synchronize_coroutine(
@@ -491,7 +491,8 @@ def _synchronize_coroutine(
 
 @pytest.hookimpl(wrapper=True)
 def pytest_fixture_setup(fixturedef: FixtureDef, request) -> object | None:
-    pass
+    result = yield
+    return result
 
 
 _DUPLICATE_LOOP_SCOPE_DEFINITION_ERROR = """\
