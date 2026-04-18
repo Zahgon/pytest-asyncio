@@ -243,7 +243,10 @@ def _wrap_syncgen_fixture(
     runner: Runner,
 ) -> Callable[SyncGenFixtureParams, Generator[SyncGenFixtureYieldType]]:
     @functools.wraps(fixture_function)
-    pass
+    def wrapper(*args, **kwargs):
+        pass
+
+    return wrapper
 
 
 SyncFixtureParams = ParamSpec("SyncFixtureParams")
@@ -255,7 +258,10 @@ def _wrap_sync_fixture(
     runner: Runner,
 ) -> Callable[SyncFixtureParams, SyncFixtureReturnType]:
     @functools.wraps(fixture_function)
-    pass
+    def wrapper(*args, **kwargs):
+        pass
+
+    return wrapper
 
 
 AsyncGenFixtureParams = ParamSpec("AsyncGenFixtureParams")
@@ -270,7 +276,10 @@ def _wrap_asyncgen_fixture(
     request: FixtureRequest,
 ) -> Callable[AsyncGenFixtureParams, AsyncGenFixtureYieldType]:
     @functools.wraps(fixture_function)
-    pass
+    def wrapper(*args, **kwargs):
+        pass
+
+    return wrapper
 
 
 AsyncFixtureParams = ParamSpec("AsyncFixtureParams")
@@ -285,7 +294,10 @@ def _wrap_async_fixture(
     request: FixtureRequest,
 ) -> Callable[AsyncFixtureParams, AsyncFixtureReturnType]:
     @functools.wraps(fixture_function)
-    pass
+    def wrapper(*args, **kwargs):
+        pass
+
+    return wrapper
 
 
 def _apply_contextvar_changes(
@@ -527,7 +539,10 @@ def _create_scoped_runner_fixture(scope: _ScopeName) -> Callable:
         scope=scope,
         name=f"_{scope}_scoped_runner",
     )
-    pass
+    def scoped_runner(*args, **kwargs):
+        pass
+
+    return scoped_runner
 
 
 for scope in Scope:
